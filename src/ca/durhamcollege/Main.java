@@ -10,13 +10,14 @@ import java.util.Scanner;
 
 public class Main
 {
-    /**
+     /**
      * This method gets a string from the console
      * @param prompt a friendly message to show the user
      * @param object the object type to store the console input
-     * @return the value from the console
+     * @param <T> the generic type
+     * @return
      */
-    public static Object getConsoleInput(String prompt, Object object)
+    public static <T> T getConsoleInput(String prompt, T object)
     {
         Scanner console = new Scanner(System.in);
         System.out.print(prompt);
@@ -24,17 +25,22 @@ public class Main
         switch (object.getClass().getSimpleName())
         {
             case "String":
-                return console.nextLine();
+                return (T) console.nextLine();
             case "Integer":
-                return console.nextInt();
+                return (T) ((Integer) console.nextInt());
             case "Float":
-                return console.nextFloat();
+                return (T) ((Float)console.nextFloat());
             default:
-                return console.nextLine();
+                return (T) console.nextLine();
         }
     }
 
-    public static void printLog(String[] log)
+    /**
+     * This function prints a generic array
+     * @param log the array to print
+     * @param <T> the generic type
+     */
+    public static <T> void printLog(T[] log)
     {
         for (var line:log)
         {
@@ -42,50 +48,55 @@ public class Main
         }
     }
 
-    public static void printLog(int[] log)
+    /**
+     * This function adds elements to a generic array
+     * @param log the array to add elments to
+     * @param <T> the generic type
+     * @throws Exception
+     */
+    public static <T> void buildLog(T[] log) throws Exception
     {
-        for (var line:log)
+        int capacity = 0;
+        String prompt = "";
+
+        if(log instanceof  String[])
         {
-            System.out.println(line);
+            capacity = Config.NUM_OF_STRINGS;
+            prompt = "Enter your String: ";
+        }
+        else if (log instanceof Integer[])
+        {
+            capacity = Config.NUM_OF_INTEGERS;
+            prompt = "Enter your Integer: ";
+        }
+        else if (log instanceof Float[])
+        {
+            capacity = Config.NUM_OF_FLOATS;
+            prompt = "Enter your Float: ";
+        }
+        else
+        {
+            throw new Exception("Exception message");
+        }
+
+        for (int i = 0; i < capacity; i++)
+        {
+            if(log instanceof  String[])
+            {
+                log[i] = (T)"";
+            }
+            else if (log instanceof Integer[])
+            {
+                log[i] = (T) new Integer(0);
+            }
+            else if (log instanceof Float[])
+            {
+                log[i] = (T) new Float(0.0f);
+            }
+
+            log[i] = (T) getConsoleInput(prompt, log[i]);
         }
     }
-
-    public static void printLog(float[] log)
-    {
-        for (var line:log)
-        {
-            System.out.println(line);
-        }
-    }
-
-    public static void buildLog(String[] log)
-    {
-        for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
-        {
-            String prompt = "Enter your String: ";
-            log[i] = "";
-            log[i] = (String) getConsoleInput(prompt, log[i]);
-        }
-    }
-
-    public static void buildLog(int[] log)
-    {
-        for (int i = 0; i < Config.NUM_OF_INTEGERS; i++)
-        {
-            String prompt = "Enter your Integer: ";
-            log[i] = (int) getConsoleInput(prompt, log[i]);
-        }
-    }
-
-    public static void buildLog(float[] log)
-    {
-        for (int i = 0; i < Config.NUM_OF_FLOATS; i++)
-        {
-            String prompt = "Enter your Float: ";
-            log[i] = (float) getConsoleInput(prompt, log[i]);
-        }
-    }
-
 
 
     /**
@@ -94,24 +105,28 @@ public class Main
      */
     public static void main(String[] args)
     {
-        String[] Log = new String[Config.NUM_OF_STRINGS];
-       int[] intLog = new int[Config.NUM_OF_INTEGERS];
-       float[] floatLog = new float[Config.NUM_OF_FLOATS];
+       String[] Log = new String[Config.NUM_OF_STRINGS];
+       Integer[] intLog = new Integer[Config.NUM_OF_INTEGERS];
+       Float[] floatLog = new Float[Config.NUM_OF_FLOATS];
 
+        try
+        {
+            buildLog(Log);
+            printLog(Log);
+            System.out.println(); // empty space
 
-        buildLog(Log);
-        printLog(Log);
-        System.out.println(); // empty space
+            buildLog(intLog);
+            printLog(intLog);
+            System.out.println(); // empty space
 
-
-        buildLog(intLog);
-        printLog(intLog);
-        System.out.println(); // empty space
-
-        buildLog(floatLog);
-        printLog(floatLog);
-        System.out.println(); // empty space
-
+            buildLog(floatLog);
+            printLog(floatLog);
+            System.out.println(); // empty space
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
 
 
     }
