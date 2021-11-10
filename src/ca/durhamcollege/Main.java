@@ -34,10 +34,6 @@ public class Main
         }
     }
 
-    /**
-     * This method prints the log to the console
-     * @param log string array of input lines
-     */
     public static void printLog(String[] log)
     {
         for (var line:log)
@@ -46,35 +42,75 @@ public class Main
         }
     }
 
+    public static void printLog(int[] log)
+    {
+        for (var line:log)
+        {
+            System.out.println(line);
+        }
+    }
+
+    public static void printLog(float[] log)
+    {
+        for (var line:log)
+        {
+            System.out.println(line);
+        }
+    }
+
+    public static void buildLog(String[] log)
+    {
+        for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
+        {
+            String prompt = "Enter your String: ";
+            log[i] = "";
+            log[i] = (String) getConsoleInput(prompt, log[i]);
+        }
+    }
+
+    public static void buildLog(int[] log)
+    {
+        for (int i = 0; i < Config.NUM_OF_INTEGERS; i++)
+        {
+            String prompt = "Enter your Integer: ";
+            log[i] = (int) getConsoleInput(prompt, log[i]);
+        }
+    }
+
+    public static void buildLog(float[] log)
+    {
+        for (int i = 0; i < Config.NUM_OF_FLOATS; i++)
+        {
+            String prompt = "Enter your Float: ";
+            log[i] = (float) getConsoleInput(prompt, log[i]);
+        }
+    }
+
+
+
     /**
      * Entry point for our application
      * @param args
      */
     public static void main(String[] args)
     {
-       int intNumber = 0;
-       float floatNumber = 0.0f;
-       String stringInput = "";
-
-       stringInput = (String) getConsoleInput("Enter a String: ", stringInput);
-
-       System.out.println("Our String is: " + stringInput);
-
-        stringInput = (String) getConsoleInput("Enter a second String: ", stringInput);
-
-        System.out.println("Our second String is: " + stringInput);
+        String[] Log = new String[Config.NUM_OF_STRINGS];
+       int[] intLog = new int[Config.NUM_OF_INTEGERS];
+       float[] floatLog = new float[Config.NUM_OF_FLOATS];
 
 
-       intNumber = (int) getConsoleInput("Enter an Integer: ", intNumber);
+        buildLog(Log);
+        printLog(Log);
+        System.out.println(); // empty space
 
-       System.out.println("Our Integer is: " + intNumber);
 
+        buildLog(intLog);
+        printLog(intLog);
+        System.out.println(); // empty space
 
-
-        floatNumber = (float) getConsoleInput("Enter an Float: ", floatNumber);
-
-        System.out.println("Our Float is: " + floatNumber);
-
+        buildLog(floatLog);
+        printLog(floatLog);
+        System.out.println(); // empty space
 
 
 
