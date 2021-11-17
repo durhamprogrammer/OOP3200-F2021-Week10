@@ -17,13 +17,13 @@ public class Main
        Console console = new Console();
 
 
-        /*for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
+        for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
         {
-         console.input("Enter your String: ", InputTypes.STRING);
+         console.input("Enter your String: ");
         }
 
-        console.printLog(InputTypes.STRING);
-        System.out.println(); // empty space*/
+        console.printLog();
+        System.out.println(); // empty space
 
 
         for (int i = 0; i < Config.NUM_OF_INTEGERS; i++)

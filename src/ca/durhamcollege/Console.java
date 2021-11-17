@@ -87,6 +87,16 @@ public class Console
     }
 
     /**
+     * adds a string to the string Log
+     * @param prompt
+     */
+    public void input(String prompt)
+    {
+        input(prompt, InputTypes.STRING);
+    }
+
+
+    /**
      * This function prints a generic array
      * @param type indicates the Log to be printed
      */
@@ -125,6 +135,14 @@ public class Console
 
                 break;
         }
+    }
+
+    /**
+     * prints the string log
+     */
+    public void printLog()
+    {
+        printLog(InputTypes.STRING);
     }
 
     /**
