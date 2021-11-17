@@ -3,7 +3,7 @@ package ca.durhamcollege;
 public enum InputTypes
 {
     STRING,
-    INT,
+    INTEGER,
     FLOAT,
     NUM_OF_TYPES
 }
