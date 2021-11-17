@@ -19,8 +19,22 @@ public class Console
     }
 
     // private methods
+    private boolean notEmpty(ArrayList list)
+    {
+        if(list.isEmpty())
+        {
+            System.out.println("Specified Log is empty.");
+            return false;
+        }
+        return true;
+    }
+
 
     // public methods
+
+    /**
+     * Initializes all input logs. If input logs already initialized - performs destructive clear
+     */
     public void initialize()
     {
         // instantiate empty lists of various types
@@ -39,17 +53,36 @@ public class Console
         Scanner console = new Scanner(System.in);
         System.out.print(prompt);
 
-        switch (type)
+        try
         {
-            case STRING:
-                 stringLog.add(console.nextLine());
-                 break;
-            case INTEGER:
-                intLog.add(console.nextInt());
-                break;
-            case FLOAT:
-                floatLog.add(console.nextFloat());
-                break;
+            switch (type)
+            {
+                case STRING:
+                    stringLog.add(console.nextLine());
+                    break;
+                case INTEGER:
+                    int intInput = console.nextInt();
+                    intLog.add(intInput);
+                    break;
+                case FLOAT:
+                    float floatInput = console.nextFloat();
+                    floatLog.add(floatInput);
+                    break;
+            }
+        }
+        catch(Exception e)
+        {
+            String message = "ERROR: Incorrect Type entered. ";
+            if(type == InputTypes.INTEGER)
+            {
+                message += "Please re-enter an Integer: ";
+                input(message, InputTypes.INTEGER);
+            }
+            else if(type == InputTypes.FLOAT)
+            {
+                message += "Please enter a Float: ";
+                input(message, InputTypes.FLOAT);
+            }
         }
     }
 
@@ -57,27 +90,39 @@ public class Console
      * This function prints a generic array
      * @param type indicates the Log to be printed
      */
-    public <T> void printLog(InputTypes type)
+    public void printLog(InputTypes type)
     {
         switch (type)
         {
             case STRING:
-                for (var line:stringLog)
+                if(notEmpty(stringLog))
                 {
-                    System.out.println(line);
+                    for (var line:stringLog)
+                    {
+                        System.out.println(line);
+                    }
                 }
+
                 break;
             case INTEGER:
-                for (var line:intLog)
+                if(notEmpty(intLog))
                 {
-                    System.out.println(line);
+                    for (var line:intLog)
+                    {
+                        System.out.println(line);
+                    }
                 }
+
                 break;
             case FLOAT:
-                for (var line:floatLog)
+                if(notEmpty(floatLog))
                 {
-                    System.out.println(line);
+                    for (var line:floatLog)
+                    {
+                        System.out.println(line);
+                    }
                 }
+
                 break;
         }
     }
@@ -100,5 +145,15 @@ public class Console
                 floatLog.clear();
                 break;
         }
+    }
+
+    /**
+     * Clears all input logs (non-destructively)
+     */
+    public void clearAll()
+    {
+        stringLog.clear();
+        intLog.clear();
+        floatLog.clear();
     }
 }

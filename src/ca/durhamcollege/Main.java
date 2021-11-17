@@ -16,38 +16,36 @@ public class Main
     {
        Console console = new Console();
 
-        try
+
+        /*for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
         {
-            for (int i = 0; i < Config.NUM_OF_STRINGS; i++)
-            {
-             console.input("Enter your String: ", InputTypes.STRING);
-            }
-
-            console.printLog(InputTypes.STRING);
-            System.out.println(); // empty space
-
-
-            for (int i = 0; i < Config.NUM_OF_INTEGERS; i++)
-            {
-                console.input("Enter your Integer: ", InputTypes.INTEGER);
-            }
-
-            console.printLog(InputTypes.INTEGER);
-            System.out.println(); // empty space
-
-
-            for (int i = 0; i < Config.NUM_OF_FLOATS; i++)
-            {
-                console.input("Enter your Float: ", InputTypes.FLOAT);
-            }
-
-            console.printLog(InputTypes.FLOAT);
-            System.out.println(); // empty space
+         console.input("Enter your String: ", InputTypes.STRING);
         }
-        catch (Exception e)
+
+        console.printLog(InputTypes.STRING);
+        System.out.println(); // empty space*/
+
+
+        for (int i = 0; i < Config.NUM_OF_INTEGERS; i++)
         {
-            System.out.println(e.getMessage());
+            console.input("Enter your Integer: ", InputTypes.INTEGER);
         }
+
+        console.printLog(InputTypes.INTEGER);
+        System.out.println(); // empty space
+
+
+        /*for (int i = 0; i < Config.NUM_OF_FLOATS; i++)
+        {
+            console.input("Enter your Float: ", InputTypes.FLOAT);
+        }
+
+        console.printLog(InputTypes.FLOAT);
+        System.out.println(); // empty space*/
+
+        console.clearAll();
+        console.printLog(InputTypes.INTEGER);
+        System.out.println(); // empty space
 
 
     }
